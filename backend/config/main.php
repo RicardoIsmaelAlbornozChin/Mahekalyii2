@@ -12,7 +12,17 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => ['admin' => [
+        'class' => 'mdm\admin\Module',
+        'layout' => 'left-menu',
+    
+    ],
+    'gridview' =>  [
+
+        'class' => '\kartik\grid\Module'
+
+    ]
+],
     'components' => [
         'authManager' => [
             'class' =>  'yii\rbac\DbManager',// or use 'yii\rbac\DbManager'
@@ -22,9 +32,9 @@ return [
 
         ],
         'user' => [
-            'identityClass' => 'app\models\Usuario',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityClass' => 'backend\models\Usuario',
+            'enableAutoLogin' => false,
+         //   'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -63,14 +73,17 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
+           // 'site/*',
             'site/login',
             'site/logout',
             'admin/*',
             'gii/*',
-             'users/*',
-             'articulo/*',
-             'bajas/*',
-             'usuario/*',
+             //'users/*',
+             //'articulo/*',
+             //'bajas/*',
+             //'usuario/*',
+             //'some-controller/some-action',
+
             // The actions listed here will be allowed to everyone including guests.
             // So, 'admin/*' should not appear here in the production, of course.
             // But in the earlier stages of your development, you may probably want to
@@ -78,16 +91,18 @@ return [
             // otherwise you may not even take a first step.
         ]
     ],
-    'modules' => [
+
+    
+  /*  'modules' => [
         'admin' => [
             'class' => 'mdm\admin\Module',
             'layout' => 'left-menu',
         ],
-      //  'user' => [
-          //  'class' => 'backend\modules\user\Module',
-        //],
+       'user' => [
+      'class' => 'backend\modules\user\Module',
+        ],
 
-    ],
+    ],*/
 
     'params' => $params,
 ];

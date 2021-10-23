@@ -62,16 +62,15 @@ class UsuarioController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Usuario();
 
         if ($model->load(Yii::$app->request->post())) {
 
             $hash =  Yii::$app->security->generatePasswordHash($model->password);
             // echo "hash:" . $hash;
-            $model->password = $hash;
-            if ($model->save()) {
+            $model->password = $hash;                                               
+            if ($model->save()) {  
                 $auth = \Yii::$app->authManager;
                 $authorRole = $auth->getRole('administrador');
                 $auth->assign($authorRole, $model->id);
@@ -84,7 +83,7 @@ class UsuarioController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
     /**

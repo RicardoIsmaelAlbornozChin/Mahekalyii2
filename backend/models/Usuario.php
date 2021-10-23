@@ -1,7 +1,10 @@
 <?php
 
 namespace backend\models;
-
+use yii\base\NotSupportedException;
+use yii\db\ActiveRecord;
+use yii\helpers\Security;
+use yii\web\IdentityInterface;
 use Yii;
 
 /**
@@ -12,8 +15,12 @@ use Yii;
  * @property string $names
  * @property string $password
  */
-class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class Usuario extends \yii\db\ActiveRecord  implements IdentityInterface
 {
+
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
     /**
      * {@inheritdoc}
      */
@@ -21,6 +28,8 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return 'usuario';
     }
+
+    
 
     /**
      * {@inheritdoc}

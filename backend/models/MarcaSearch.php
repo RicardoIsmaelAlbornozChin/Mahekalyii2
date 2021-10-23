@@ -2,18 +2,17 @@
 
 namespace backend\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Marca;
 
 /**
- * MarcaSearch represents the model behind the search form about `backend\models\Marca`.
+ * MarcaSearch represents the model behind the search form of `backend\models\Marca`.
  */
 class MarcaSearch extends Marca
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -24,7 +23,7 @@ class MarcaSearch extends Marca
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {

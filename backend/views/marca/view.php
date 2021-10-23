@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->id_marca;
 $this->params['breadcrumbs'][] = ['label' => 'Marcas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
 ?>
 <div class="marca-view">
 

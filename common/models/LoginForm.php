@@ -1,8 +1,10 @@
 <?php
+
 namespace common\models;
 
 use Yii;
 use yii\base\Model;
+
 /**
  * Login form
  */
@@ -16,7 +18,7 @@ class LoginForm extends Model
 
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -54,24 +56,23 @@ class LoginForm extends Model
      */
     public function login()
     {
-        
-        $usuario = $this->getUser(); // Se agrega esta linea
         if ($this->validate()) {
-            if($usuario){ // Se agrega este if 
-                return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
-            }                                    
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
+        
         return false;
     }
+
     /**
      * Finds user by [[username]]
      *
-     * @return Users|null
+     * @return User|null
      */
-    public function getUser()
+    protected function getUser()
     {
-        if ($this->_user === false) {
-           $this->_user = Usuario::findByUsername($this->username);         }
+        if ($this->_user === null) {
+            $this->_user = User::findByUsername($this->username);
+        }
 
         return $this->_user;
     }

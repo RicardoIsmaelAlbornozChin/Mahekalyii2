@@ -46,6 +46,7 @@
                         'items' => [
                             ['label' => 'Página actual', 'url' => ['site/index'], 'iconStyle' => 'far'],
                             ['label' => 'Usuarios','url' => ['modules/user/views/user/index'], 'iconStyle' => 'far'],
+                            ['label' => 'Backend','url' => ['http://backend.mahekalyii2.com/index.php?r=sistemas%2Findex'], 'iconStyle' => 'far'],
 
                             ['label' => 'Lista de Usuarios','url' => ['user-list/index'], 'iconStyle' => 'far'],
                         ]

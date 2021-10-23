@@ -1,0 +1,19 @@
+*{
+
+  box-sizing: border-box;
+
+}
+
+.flexcontainer{
+display: flex;
+flex-direction: row-reverse;
+margin: 0.4px;
+
+}
+
+.flexcontainer div{
+
+margin: 10px;
+
+
+}

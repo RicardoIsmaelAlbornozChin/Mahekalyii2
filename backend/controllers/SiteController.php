@@ -5,7 +5,7 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use backend\models\LoginForm;
 
 /**
  * Site controller
@@ -60,6 +60,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+    
+       $this->layout = 'buttonlayout';
         return $this->render('index');
     }
 

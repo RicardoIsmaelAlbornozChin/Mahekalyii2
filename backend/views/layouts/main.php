@@ -5,12 +5,11 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
+use yii\bootstrap4\Breadcrumbs;
 use common\widgets\Alert;
-use backend\controllers;
-use  yii\web\Controller;
+
 
 AppAsset::register($this);
 ?>
@@ -31,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
 <div class = "row">
 <div class = "col-md-4"><img src = "<?= Yii::getAlias('@web')?>/img/turttle.jpg" alt="Logo de Mahekal" class =" img-responsive"></div>
-<div class = "col-md-8"><h1>Inventario</h1></div>
+<div class = "col-md-8"><h1>Tengo que cambiar la vista de este sitio</h1></div>
 
 
 </div>
@@ -40,7 +39,7 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse',
+            'class' => 'navbar navbar-expand-lg navbar-dark bg-dark',
         ],
     ]);
     $menuItems = [
