@@ -3,15 +3,16 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
-use yii\bootstrap4\Breadcrumbs;
-use common\widgets\Alert;
 
 
-AppAsset::register($this);
+
+
+\hail812\adminlte3\assets\FontAwesomeAsset::register($this);
+\hail812\adminlte3\assets\AdminLteAsset::register($this);
+$this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
+
+$assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -20,124 +21,32 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
+    <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="hold-transition sidebar-mini">
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-<div class = "row">
-<div class = "col-md-4"><img src = "<?= Yii::getAlias('@web')?>/img/turttle.jpg" alt="Logo de Mahekal" class =" img-responsive"></div>
-<div class = "col-md-8"><h1>Tengo que cambiar la vista de este sitio</h1></div>
+<div class="wrapper">
+    <!-- Navbar -->
+    <?= $this->render('navbar', ['assetDir' => $assetDir]) ?>
+    <!-- /.navbar -->
 
+    <!-- Main Sidebar Container -->
+    <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>
 
+    <!-- Content Wrapper. Contains page content -->
+    <?= $this->render('content', ['content' => $content, 'assetDir' => $assetDir]) ?>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <?= $this->render('control-sidebar') ?>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <?= $this->render('footer') ?>
 </div>
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-lg navbar-dark bg-dark',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-       // $menuItems[] = ['label' => 'Reportes', 'url' => ['/site/index']];
-        $menuItems[] = ['label' => 'Productos', 'url' => ['site/index'],
-            'options' =>['class' =>'dropdown'],
-            'template'=>'<a href="{url}" class="href_class">{label}</a>',
-            'items' =>[ ['label' => 'Articulos', 'url' => ['articulo/index']],
-                        ['label' => 'Categoria', 'url' => ['categoria/index']],
-                        ['label' => 'Marca', 'url' => ['marca/index']],   
-                        ['label' => 'Modelo', 'url' => ['modelo/index']],  
-                        ['label' => 'Unidades', 'url' => ['unidades/index']],
-                        ['label' => 'Departamento', 'url' => ['departamento/index']],                                               
-                                               
-                    ],
-            ];
-
-            $menuItems[] = ['label' => 'Recursos', 'url' => ['site/index'],
-            'options' =>['class' =>'dropdown'],
-            'template'=>'<a href="{url}" class="href_class">{label}</a>',
-            'items' =>[ ['label' => 'Proveedores', 'url' => ['proveedor/index']],
-                        ['label' => 'Detalles de proveedor', 'url' => ['/articulos-proveedores/index']],
-                                                                     
-                                               
-                    ],
-            ];
-
-
-           // $menuItems[] = ['label' => 'Compras', 'url' => ['/compra/index']];
-            //$menuItems[] = ['label' => 'Detalles', 'url' => ['/detalle-compra/index']];
-           // $menuItems[] = ['label' => 'Proveedores', 'url' => ['/proveedor/index']];
-           // $menuItems[] = ['label' => 'ProveedoresDetails', 'url' => ['/articulos-proveedores/index']];
-
-
-
-        $menuItems[] = ['label' => 'Resguardos', 'url' => ['/resguardos/index']];
-
-        $menuItems[] = ['label' => 'Compras', 'url' => ['site/index'],
-        'options' =>['class' =>'dropdown'],
-        'template'=>'<a href="{url}" class="href_class">{label}</a>',
-        'items' =>[ ['label' => 'Compras', 'url' => ['compra/index']],
-                    ['label' => 'Detalles de compra', 'url' => ['/detalle-compra/index']],
-                                                                 
-                                           
-                ],
-        ];
-
-        $menuItems[] = ['label' => 'Bajas', 'url' => ['site/index'],
-        'options' =>['class' =>'dropdown'],
-        'template'=>'<a href="{url}" class="href_class">{label}</a>',
-        'items' =>[ ['label' => 'Bajas', 'url' => ['bajas/index']],
-                    ['label' => 'Crear baja', 'url' => ['Site/index']],
-                    ['label' => 'Reporte bajas', 'url' => ['Site/index']],
-                    ['label' => 'Rubros', 'url' => ['rubro/index']],
-                    ['label' => 'Destinos', 'url' => ['destino-final/index']],
-
-    ],
-    ];
-
-
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\DepartamentoSearch */
@@ -12,25 +12,75 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="departamento-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<?php
+    $gridColumns = [
 
-    <p>
-        <?= Html::a('Create Departamento', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+[
+    'class'=>'kartik\grid\SerialColumn',
+    'contentOptions'=>['class'=>'kartik-sheet-style'],
+    'width'=>'36px',
+    'header'=>'',
+    'headerOptions'=>['class'=>'kartik-sheet-style']
+],
 
-            'id_departamento',
-            'departamento',
-            'descripcion_departamento',
-            'extension',
-            'jefe_departamento',
+[
+    'attribute' => 'id_departamento', 
+    'label' => 'ID',
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+[
+    'attribute' => 'departamento', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+[
+  'attribute' => 'descripcion_departamento', 
+  'vAlign' => 'middle',
+  'hAlign' => 'center'
+],
+[
+    'attribute' => 'extension', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+  ],
+  [
+    'attribute' => 'jefe_departamento', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+  ],
+
+[
+    'class' => 'kartik\grid\ActionColumn',
+],
+];
+
+?>
+
+<?= GridView::widget([
+  'dataProvider' => $dataProvider,
+  'filterModel' => $searchModel,
+  'columns' => $gridColumns,
+  'responsive'=>false,
+  'hover'=>true,
+  'pjax'=> true,
+  'toolbar'=>[
+      '{export}',
+      '{toggleData}'
+  ],
+  
+  'panel'=>[
+      'heading'=>Yii::t('app', 'Departamentos'),
+
+
+'type' => 'info', 
+ 'before'=>Html::a(Yii::t('app', 'Nuevo'), ['create'], ['class' => 'btn btn-danger']),
+
+      'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+
+      'footer'=>false
+  ],
+
+]); ?>
 </div>

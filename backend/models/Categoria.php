@@ -1,7 +1,6 @@
 <?php
 
 namespace backend\models;
-
 use Yii;
 
 /**
@@ -49,6 +48,9 @@ class Categoria extends \yii\db\ActiveRecord
         return $this->hasMany(Articulo::className(), ['id_categoria' => 'id_categoria']);
     }
 
-   
+   public function getCategoriaVariable()
+   {
+       return $this->id_categoria. '-' . $this->nombre_categoria; 
+   }
 
 }

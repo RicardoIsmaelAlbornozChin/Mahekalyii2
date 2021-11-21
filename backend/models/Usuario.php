@@ -17,7 +17,7 @@ use Yii;
  */
 class Usuario extends \yii\db\ActiveRecord  implements IdentityInterface
 {
-
+   public $usuarioname;
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;

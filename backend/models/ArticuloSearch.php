@@ -19,7 +19,7 @@ class ArticuloSearch extends Articulo
     {
         return [
             [['id_articulo', 'cantidad_articulo', 'id_marca', 'id_modelo', 'id_categoria', 'id_unidades', 'id_departamento'], 'integer'],
-            [['articulo', 'descripcion', 'fecha_entrada'], 'safe'],
+            [['articulo', 'descripcion', 'fecha_entrada'],  'safe'],
         ];
     }
 
@@ -49,13 +49,15 @@ class ArticuloSearch extends Articulo
             'query' => $query,
         ]);
 
-        $this->load($params);
+
+  $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
+
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -70,7 +72,9 @@ class ArticuloSearch extends Articulo
         ]);
 
         $query->andFilterWhere(['like', 'articulo', $this->articulo])
-            ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
+            ->andFilterWhere(['like', 'descripcion', $this->descripcion])
+            ->andFilterWhere(['like', 'modelo.nombre_modelo', (string)$this->modelo])
+            ;
 
         return $dataProvider;
     }

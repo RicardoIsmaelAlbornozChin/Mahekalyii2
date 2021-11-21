@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "efe468973734cd6d1ab09cf5dc5cb7c4",
+    "content-hash": "554f42e89981136a37e47a7f7a929e20",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -4997,7 +4997,6 @@
                 "issues": "https://github.com/sebastianbergmann/resource-operations/issues",
                 "source": "https://github.com/sebastianbergmann/resource-operations/tree/master"
             },
-            "abandoned": true,
             "time": "2015-07-28T20:34:47+00:00"
         },
         {

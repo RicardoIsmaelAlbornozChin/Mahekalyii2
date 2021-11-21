@@ -1,189 +1,130 @@
 <?php
 
-use yii\helpers\Html;
+use Codeception\PHPUnit\ResultPrinter\HTML;
 
-/* @var $this yii\web\View */
-use yii\helpers\Url;
-
-$this->title = 'Mahekal inventory';
-
+$this->title = 'Starter Page';
+$this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
-<?= Html::cssFile('@web/css/estilos.css') ?>
-
-<div class="site-index">
-
-    <!--!  <div class="jumbotron">
-        <h1>Bienvenido</h1>
-
-        <p class="lead">Elige el departamento al que perteneces</p>
-
-        <p><a class="btn btn-lg btn-success" href="https://www.mahekalbeachresort.com/es">Go to Mahekal =></a></p>
-        <p><a class="btn btn-lg btn-danger" href="http://backend.mahekalyii2.com/index.php?r=sistemas%2Findex">SISTEMAS</a></p>
-        <p><a class="btn btn-lg btn-danger" href="http://backend.mahekalyii2.com/index.php?r=departamento-comp/index">COMPRAS</a></p>
-        <p><a class="btn btn-lg btn-danger" href="http://backend.mahekalyii2.com/index.php?r=articulo/index">Main</a></p>
-        <p><a class="btn btn-lg btn-danger" href="http://backend.mahekalyii2.com/index.php?r=admin">RBAC</a></p>
--->
-
-</div>
-<div>
-
-    <body>
-        <div class="contenedor">
-            <div class="contenedor-conciertos">
-                <div class="card" title="Recursos humanos" style="background-image: url('./img/rhh.png')">
-                    <div class="textos"> </div>
-                    <div>
-                        
-                    <a href="http://backend.mahekalyii2.com/index.php?r=rh%2Findex">
-                    <button class="boton">RRHH</button>
-                    </a>
-                    </div>
-                </div>
-
-
-                <div class="card" title="Sistemas" id="linkimg" style="background-image: url('./img/s1.jpg')">
-                <div class="textos"> </div>
-                    <div>
-                    <a href="http://backend.mahekalyii2.com/index.php?r=sistemas%2Findex">
-                    <button class="boton">Sistemas</button>
-                    </a>
-                    </div>
-                </div>
-
-                <div class="card" title="Mantenimiento" style="background-image: url('./img/mn1.png')">
-                <div class="textos"> </div>
-                    <div>
-                    <a href="http://backend.mahekalyii2.com/index.php?r=mantto%2Findex">
-
-                        <button class="boton">Mantto</button>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card" title="Ama de llaves" style="background-image: url('./img/ama1.jpg')">
-                <div class="textos"> </div>
-    
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=amade%2Findex">
-
-                        <button class="boton">Ama de llaves</button>
-                </a>
-                    </div>
-
-                </div>
-                <div class="card" title="Alimentos y bebidas" style="background-image: url('./img/ayb1.jpg')">
-                <div class="textos"> </div>
-
-                    <div>
-                    <a href="http://backend.mahekalyii2.com/index.php?r=alimentos%2Findex">
-
-                        <button class="boton">AyB</button>
-                        </a>
-                    </div>
-
-                </div>
-                <div class="card" title="Seguridad" style="background-image: url('./img/sec1.png')">
-                <div class="textos"> </div>
-   
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=seguridad%2Findex">
-
-                        <button class="boton">Seguridad</button>
-                    </a>
-                    </div>
-                </div>
-
-                <div class="card" title="Seguridad" style="background-image: url('./img/almacen.png')">
-                <div class="textos"> </div>
-   
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=almacen%2Findex">
-
-                        <button class="boton">Almacen</button>
-                    </a>
-                    </div>
-                </div>
-
-                <div class="card" title="Seguridad" style="background-image: url('./img/cocina.jpg')">
-                <div class="textos"> </div>
-   
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=cocina%2Findex">
-
-                        <button class="boton">Cocina</button>
-                    </a>
-                    </div>
-                </div>
-
-                <div class="card" title="Seguridad" style="background-image: url('./img/recepcion.jpg')">
-                <div class="textos"> </div>
-   
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=recepcion%2Findex">
-
-                        <button class="boton">Recepcion</button>
-                    </a>
-                    </div>
-                </div>
-                
-                <div class="card" title="Seguridad" style="background-image: url('./img/conta.jpg')">
-                <div class="textos"> </div>
-   
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=contabilidad%2Findex">
-
-                        <button class="boton">Contabilidad</button>
-                    </a>
-                    </div>
-                </div>
-
-                <div class="card" title="Seguridad" style="background-image: url('./img/users.png')">
-                <div class="textos"> </div>
-   
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=usuario%2Findex">
-
-                        <button class="boton">Usuarios</button>
-                    </a>
-                    </div>
-                </div>
-
-                <div class="card" title="Seguridad" style="background-image: url('./img/admin.png')">
-                <div class="textos"> </div>
-   
-                <div>
-                <a href="http://backend.mahekalyii2.com/index.php?r=admin">
-
-                        <button class="boton">Admin</button>
-                    </a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="banner" style="background-image: url('./img/banner.jpg')">
-                <h3>Rock Legends 2021</h3>
-                <ul>
-                    <li>Guns N' Roses</li>
-                    <li>AC/DC</li>
-                    <li>Motley Crue</li>
-                    <li>The Cult</li>
-                    <li>Poison</li>
-                    <li>Def Leppard</li>
-                </ul>
-                <button class="boton">Comprar Boletos</button>
-            </div>
+<!--<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <?= \hail812\adminlte\widgets\Alert::widget([
+                'type' => 'success',
+                'body' => '<h3>Bienvenido!</h3>',
+            ]) ?>
+            <?= \hail812\adminlte\widgets\Callout::widget([
+                'type' => 'danger',
+                'head' => 'I am a danger callout!',
+                'body' => 'There is a problem that we need to fix. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.'
+            ]) ?>
         </div>
-    </body>
+    </div>-->
+<!--
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Messages',
+                'number' => '1,410',
+                'icon' => 'far fa-envelope',
+            ]) ?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Bookmarks',
+                'number' => '410',
+                 'theme' => 'success',
+                'icon' => 'far fa-flag',
+            ]) ?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Uploads',
+                'number' => '13,648',
+                'theme' => 'gradient-warning',
+                'icon' => 'far fa-copy',
+            ]) ?>
+        </div>
+    </div>
 
-    <!--The following image works a link <br>
-    <a href="http://backend.mahekalyii2.com/index.php?r=sistemas%2Findex"
-    >    <img src="<?= Yii::getAlias('@web') ?>/img/pava.png" alt="RRHH" height="150" width="150">
-</a>*/-->
-</div>
-<div class="body-content">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Bookmarks',
+                'number' => '41,410',
+                'icon' => 'far fa-bookmark',
+                'progress' => [
+                    'width' => '70%',
+                    'description' => '70% Increase in 30 Days'
+                ]
+            ]) ?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?php $infoBox = \hail812\adminlte\widgets\InfoBox::begin([
+                'text' => 'Likes',
+                'number' => '41,410',
+                'theme' => 'success',
+                'icon' => 'far fa-thumbs-up',
+                'progress' => [
+                    'width' => '70%',
+                    'description' => '70% Increase in 30 Days'
+                ]
+            ]) ?>
+            <?= \hail812\adminlte\widgets\Ribbon::widget([
+                'id' => $infoBox->id.'-ribbon',
+                'text' => 'Ribbon',
+            ]) ?>
+            <?php \hail812\adminlte\widgets\InfoBox::end() ?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Events',
+                'number' => '41,410',
+                'theme' => 'gradient-warning',
+                'icon' => 'far fa-calendar-alt',
+                'progress' => [
+                    'width' => '70%',
+                    'description' => '70% Increase in 30 Days'
+                ],
+                'loadingStyle' => true
+            ]) ?>
+        </div>
+    </div>
 
-</div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\SmallBox::widget([
+                'title' => '150',
+                'text' => 'New Orders',
+                'icon' => 'fas fa-shopping-cart',
+            ]) ?>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?php $smallBox = \hail812\adminlte\widgets\SmallBox::begin([
+                'title' => '150',
+                'text' => 'New Orders',
+                'icon' => 'fas fa-shopping-cart',
+                'theme' => 'success'
+            ]) ?>
+            <?= \hail812\adminlte\widgets\Ribbon::widget([
+                'id' => $smallBox->id.'-ribbon',
+                'text' => 'Ribbon',
+                'theme' => 'warning',
+                'size' => 'lg',
+                'textSize' => 'lg'
+            ]) ?>
+            <?php \hail812\adminlte\widgets\SmallBox::end() ?>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\SmallBox::widget([
+                'title' => '44',
+                'text' => 'User Registrations',
+                'icon' => 'fas fa-user-plus',
+                'theme' => 'gradient-success',
+                'loadingStyle' => true
+            ]) ?>
+        </div>
+    </div>-->
 
-</div>
+    <div class = "col-md-4"><h1>Bienvenido</h1></div>
+
 </div>

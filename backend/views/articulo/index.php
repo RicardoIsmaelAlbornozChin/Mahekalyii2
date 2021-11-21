@@ -1,13 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ArticuloSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articulos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articulo-index">
@@ -15,61 +14,126 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Articulo', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    
+    <?php
 
-            'id_articulo',
-            'articulo',
-            'descripcion',
-            'fecha_entrada', //:datetime
-            'cantidad_articulo',
-          //label -> muestra en el grid
-          //attribute para poder usar el sort 
-          //value ->para mostrar el valor   -> view ->detailview
-            [
-                    'label'=>'Marca',
-                    'attribute'=> 'id_marca',
-                    'value'=>'marca.nombre_marca',                    
-            ],
-            
-            [
-                    'label' => 'Categoria',
-                    'attribute'=> 'id_categoria',
-                    'value'=>'categoria.nombre_categoria', //Valor a visualizar ->nombre de la clase
+$gridColumns = [
 
-            ], 
-            [
-                'label' => 'Modelo',
-                'attribute'=> 'id_modelo',
-                'value'=>'modelo.nombre_modelo', //Valor a visualizar ->nombre de la clase
+  [
 
-        ],
+      'class'=>'kartik\grid\SerialColumn',
+      'contentOptions'=>['class'=>'kartik-sheet-style'],
+      'width'=>'36px',
+      'header'=>'',
+      'headerOptions'=>['class'=>'kartik-sheet-style']
 
-        [
-            'label' => 'Departamento',
-            'attribute'=> 'id_departamento',
-            'value'=>'departamento.departamento', //Valor a visualizar ->nombre de la clase
+  ],
+
+  [
+      'attribute' => 'id_articulo', 
+      'label' => 'ID',
+      'vAlign' => 'middle',
+      'hAlign' => 'center'
+  ],
+
+  [
+      'attribute' => 'articulo', 
+      'vAlign' => 'middle',
+      'hAlign' => 'center'
+  ],
+  [
+    'attribute' => 'descripcion', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+
+[
+    'attribute' => 'fecha_entrada', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+
+[
+    'attribute' => 'cantidad_articulo', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+
+[
+    'attribute' => 'id_marca', 
+    'label' => 'Marca',
+    'value'=>'marca.nombre_marca',                    
+
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+[
+   'attribute' => 'id_modelo', 
+    'label' => 'Modelo',
+    'value'=>'modelo.nombre_modelo',                    
+
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+[
+    'attribute' => 'id_categoria',
+    'label' => 'Categoría',
+    'value'=>'categoria.nombre_categoria',                    
+    
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+/*
+[
+    'attribute' => 'id_unidades', 
+    'label' => 'Unidades',
+    'value'=>'unidades.nombre_unidades',                    
+
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+*/
+[
+    'attribute' => 'id_departamento', 
+    'label' => 'Departamento',
+    'value'=>'departamento.departamento',                    
+
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+
+  [
+      'class' => 'kartik\grid\ActionColumn',
+  ],
+
+];
+
+?>
+
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => $gridColumns,
+    'responsive'=>false,
+    'hover'=>true,
+    'pjax'=> true,
+    'toolbar'=>[
+        '{export}',
+        '{toggleData}'
+    ],
+    
+    'panel'=>[
+        'heading'=>Yii::t('app', 'Artículos'),
+
+
+'type' => 'info', 
+   'before'=>Html::a(Yii::t('app', 'Nuevo'), ['create'], ['class' => 'btn btn-danger']),
+
+        'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+
+        'footer'=>false
 
     ],
-    [
-        'label' => 'Unidades',
-        'attribute'=> 'id_unidades',
-        'value'=>'unidades.id_unidades', //Valor a visualizar ->nombre de la clase
-
-],
-             //'id_marca',
-            // 'id_modelo',
-            // 'id_categoria',
-            // 'id_unidades',
-            // 'id_departamento',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+ 
+]); ?>
 </div>

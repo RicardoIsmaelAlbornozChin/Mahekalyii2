@@ -6,7 +6,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\LoginForm;
-
+use backend\controllers\UsuarioController;
+use backend\models\Usuario;
 /**
  * Site controller
  */
@@ -60,10 +61,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-    
-       $this->layout = 'buttonlayout';
+        
+    $model = new Usuario;
+    return $this->render('index', ['model'=>$model]);
+
+    /*
+       $this->layout = 'main';
         return $this->render('index');
+*/
+
+
     }
+    
+    
+    
 
     /**
      * Login action.
@@ -71,24 +82,36 @@ class SiteController extends Controller
      * @return string
      */
     public function actionLogin()
+
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ( $model->load(Yii::$app->request->post()) ) {            
-            if($model->login()){ // Si se logea con éxito                                 
-                return $this->redirect(['/site']);
-            }        
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
+   
+           if (!Yii::$app->user->isGuest) {
+   
+               return $this->goHome();
+   
+           }
+   
+           $model = new LoginForm();
+   
+           if ($model->load(Yii::$app->request->post()) && $model->login()) {
+   
+               return $this->goBack();
+   
+           } else {
+   
+               $model->password = '';
+   
+               $this->layout = 'main-login';
+   
+               return $this->render('login', [
+   
+                   'model' => $model,
+   
+               ]);
+   
+           }
+   
+       }
 
 
     /**

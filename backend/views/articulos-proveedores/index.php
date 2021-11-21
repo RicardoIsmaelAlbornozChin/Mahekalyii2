@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $searchModel backend\models\ArticulosProveedoresSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articulos Proveedores';
+//$this->title = 'Articulos Proveedores';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articulos-proveedores-index">

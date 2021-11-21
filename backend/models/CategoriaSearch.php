@@ -12,6 +12,12 @@ use backend\models\Categoria;
  */
 class CategoriaSearch extends Categoria
 {
+    //Atributos para el filtrado por nombre y no por id
+    public $categoriaName;
+
+
+
+
     /**
      * @inheritdoc
      */

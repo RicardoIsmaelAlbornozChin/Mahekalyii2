@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ResguardosSearch */
@@ -12,36 +12,76 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resguardos-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<?php
+    $gridColumns = [
 
-    <p>
-        <?= Html::a('Create Resguardos', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+[
+    'class'=>'kartik\grid\SerialColumn',
+    'contentOptions'=>['class'=>'kartik-sheet-style'],
+    'width'=>'36px',
+    'header'=>'',
+    'headerOptions'=>['class'=>'kartik-sheet-style']
+],
 
-            'id_resguardo',
-            'fecha_resguardo',
-           // 'id_departamento',
-           // 'id_articulo',
-            [
-                'label' => 'Departamento',
-                'attribute'=> 'id_departamento',
-                'value'=>'idDepartamento.departamento', //Valor a visualizar ->nombre de la clase
-        
-             ],
+[
+    'attribute' => 'id_resguardo', 
+    'label' => 'ID',
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
 
-             [
-                'label' => 'Articulo',
-                'attribute'=> 'id_articulo',
-                'value'=>'idArticulo.articulo', //Valor a visualizar ->nombre de la clase
-        
-             ],
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+[
+    'attribute' => 'fecha_resguardo', 
+    'label' => 'Fecha de resguardo', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+],
+[
+  'attribute' => 'id_departamento', 
+  'value'=>'idDepartamento.departamento' ,
+  'label' => 'Departamento', 
+  'vAlign' => 'middle',
+  'hAlign' => 'center'
+],
+[
+    'attribute' => 'id_articulo',
+    'value'=>'idArticulo.articulo' ,
+   'label' => 'Articulo', 
+    'vAlign' => 'middle',
+    'hAlign' => 'center'
+  ],
+
+
+[
+    'class' => 'kartik\grid\ActionColumn',
+],
+];
+
+?>
+
+<?= GridView::widget([
+  'dataProvider' => $dataProvider,
+  'filterModel' => $searchModel,
+  'columns' => $gridColumns,
+  'responsive'=>false,
+  'hover'=>true,
+  'pjax'=> true,
+  'toolbar'=>[
+      '{export}',
+      '{toggleData}'
+  ],
+  
+  'panel'=>[
+      'heading'=>Yii::t('app', 'Resguardos'),
+
+
+'type' => 'info', 
+ 'before'=>Html::a(Yii::t('app', 'Nuevo'), ['create'], ['class' => 'btn btn-danger']),
+
+      'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+
+      'footer'=>false
+  ],
+
+]); ?>
 </div>

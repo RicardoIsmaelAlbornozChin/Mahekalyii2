@@ -7,6 +7,8 @@ use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use yii\bootstrap4\Breadcrumbs;
+use common\widgets\Alert;
 
 
 AppAsset::register($this);
@@ -24,12 +26,11 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?= Html::cssFile('@web/css/estilos.css') ?>
 
 <div class="wrap">
 <div class = "row">
 <div class = "col-md-4"><img src = "<?= Yii::getAlias('@web')?>/img/turttle.jpg" alt="Logo de Mahekal" class =" img-responsive"></div>
-<div class = "col-md-8"><h1>Inventario de sistemas</h1></div>
+<div class = "col-md-8"><h1>Tengo que cambiar la vista de este sitio</h1></div>
 
 
 </div>
@@ -47,8 +48,39 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
- 
+       // $menuItems[] = ['label' => 'Reportes', 'url' => ['/site/index']];
+        $menuItems[] = ['label' => 'Productos', 'url' => ['site/index'],
+            'options' =>['class' =>'dropdown'],
+            'template'=>'<a href="{url}" class="href_class">{label}</a>',
+            'items' =>[ ['label' => 'Articulos', 'url' => ['articulo/index']],
+                        ['label' => 'Categoria', 'url' => ['categoria/index']],
+                        ['label' => 'Marca', 'url' => ['marca/index']],   
+                        ['label' => 'Modelo', 'url' => ['modelo/index']],  
+                        ['label' => 'Unidades', 'url' => ['unidades/index']],
+                        ['label' => 'Departamento', 'url' => ['departamento/index']],                                               
+                                               
+                    ],
+            ];
 
+            $menuItems[] = ['label' => 'Recursos', 'url' => ['site/index'],
+            'options' =>['class' =>'dropdown'],
+            'template'=>'<a href="{url}" class="href_class">{label}</a>',
+            'items' =>[ ['label' => 'Proveedores', 'url' => ['proveedor/index']],
+                        ['label' => 'Detalles de proveedor', 'url' => ['/articulos-proveedores/index']],
+                                                                     
+                                               
+                    ],
+            ];
+
+
+           // $menuItems[] = ['label' => 'Compras', 'url' => ['/compra/index']];
+            //$menuItems[] = ['label' => 'Detalles', 'url' => ['/detalle-compra/index']];
+           // $menuItems[] = ['label' => 'Proveedores', 'url' => ['/proveedor/index']];
+           // $menuItems[] = ['label' => 'ProveedoresDetails', 'url' => ['/articulos-proveedores/index']];
+
+
+
+        $menuItems[] = ['label' => 'Resguardos', 'url' => ['/resguardos/index']];
 
         $menuItems[] = ['label' => 'Compras', 'url' => ['site/index'],
         'options' =>['class' =>'dropdown'],
@@ -90,10 +122,22 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-   
+    <div class="container">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
+        <?= $content ?>
+    </div>
 </div>
 
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
+        <p class="pull-right"><?= Yii::powered() ?></p>
+    </div>
+</footer>
 
 <?php $this->endBody() ?>
 </body>

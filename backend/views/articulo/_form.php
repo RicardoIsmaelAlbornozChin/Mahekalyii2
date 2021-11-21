@@ -46,9 +46,10 @@ use kartik\date\DatePicker;
 <?= $form->field($model, 'id_departamento')->dropDownList($model->getTipoDepartamento(),
     ['prompt' => 'Selecciona un departamento']) ?>
 
+<!--
 <?= $form->field($model, 'id_unidades')->dropDownList($model->getTipoUnidades(),
     ['prompt' => 'Selecciona un tipo de unidad']) ?>
-
+-->
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

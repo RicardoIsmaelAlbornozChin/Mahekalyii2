@@ -58,14 +58,14 @@ return [
 
         ],
        
-        /*
+      /*  
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
-        ],
-        */
+        ],*/
+        
        
         
     ],
@@ -76,8 +76,8 @@ return [
            // 'site/*',
             'site/login',
             'site/logout',
-            'admin/*',
-            'gii/*',
+            //'admin/*',
+            //'gii/*',
              //'users/*',
              //'articulo/*',
              //'bajas/*',
